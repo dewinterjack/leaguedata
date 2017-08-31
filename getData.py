@@ -24,6 +24,10 @@ def openJSON(myurl):
     return jsonData
 
 def getSummonerId(summ):
+    id = summ['id']
+    return id
+
+def getAccountId(summ):
     id = summ['accountId']
     return id
 
@@ -54,6 +58,9 @@ def printMostRecentGame(recent,summonerName): #Need the id for getting only that
                     print("Wards: " + str(participant['stats']['wardsPlaced']))
 
 
+def printLeagueDetails(region,id):
+    myurl = 'https://' + region + '.api.riotgames.com/lol/league/v3/leagues/by-summoner/' + str(id)
+    league = openJSON(myurl)
 
 summonerName = "shinameega" #Have this or the inputs commented out for quick testing or variety testing between accounts.
 region = "euw1"
@@ -62,6 +69,10 @@ region = "euw1"
 #region = input("What is the region?\n\n")
 
 summoner = summonerRequest(summonerName,region)
+accountId = getAccountId(summoner)
 id = getSummonerId(summoner)
-recent = getRecentGames(id,region)
+
+recent = getRecentGames(accountId,region)
 printMostRecentGame(recent,summonerName)
+
+printLeagueDetails(region,id)
