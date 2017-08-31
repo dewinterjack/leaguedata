@@ -74,6 +74,11 @@ def printLeagueDetails(region,id,name):
             print(player['rank'])
             print(str(player['leaguePoints']) + 'LP\n')
 
+def calculateWinRate(id,region):
+    recent = getRecentGames(id,region)
+    for game in recent['matches']:
+        print(getChampionName(game['champion']))
+
 summonerName = "shinameega" #Have this or the inputs commented out for quick testing or variety testing between accounts.
 region = "euw1"
 
@@ -86,3 +91,4 @@ id = getSummonerId(summoner)
 recent = getRecentGames(accountId,region)
 printMostRecentGame(recent,summonerName)
 printLeagueDetails(region,id,summonerName)
+calculateWinRate(accountId,region)
