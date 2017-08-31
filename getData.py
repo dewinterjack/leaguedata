@@ -3,7 +3,7 @@ import urllib.request, json
 season = {0:'PRESEASON3', 1:'SEASON3', 2:'PRESEASON2014', 3:'SEASON2014', 4: 'PRESEASON2015', 5: 'SEASON2015', 6: 'PRESEASON2016', 7: 'SEASON2016', 8: 'PRESEASON2017', 9: 'SEASON2017'}
 
 
-print('League Software')
+print('League Software\n')
 
 API_KEY = 'RGAPI-2d0ab476-0501-4bd1-8dae-6a2b0e9ed8ad'
 
@@ -47,7 +47,7 @@ def printMostRecentGame(recent,summonerName): #Need the id for getting only that
             for participant in match['participants']:
                 if(participantId == participant['participantId']):
                     champion = getChampionName(participant['championId'])
-                    print("Champion: " + champion)
+                    print("Champion: " + champion + '\n')
                     print("Kills: " + str(participant['stats']['kills']))
                     print("Deaths: " + str(participant['stats']['deaths']))
                     print("Assists: " + str(participant['stats']['assists']))
