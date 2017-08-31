@@ -20,6 +20,7 @@ def getRecentGames(id,region):
 def openJSON(myurl):
     response = urllib.request.urlopen(myurl)
     jsonRaw = response.read()
+    response.headers
     jsonData = json.loads(jsonRaw.decode('utf-8'))
     return jsonData
 
@@ -56,11 +57,25 @@ def printMostRecentGame(recent,summonerName): #Need the id for getting only that
                     print("Deaths: " + str(participant['stats']['deaths']))
                     print("Assists: " + str(participant['stats']['assists']))
                     print("Wards: " + str(participant['stats']['wardsPlaced']))
+                    print()
 
 
-def printLeagueDetails(region,id):
-    myurl = 'https://' + region + '.api.riotgames.com/lol/league/v3/leagues/by-summoner/' + str(id)
+def printLeagueDetails(region,id,name):
+    myurl = 'https://' + region + '.api.riotgames.com/lol/league/v3/leagues/by-summoner/' + str(id) + '?api_key=' + API_KEY
     league = openJSON(myurl)
+    print(league[0]['queue'] + ':\n')
+    print(league[0]['tier'])
+    for player in league[0]['entries']:
+        if(player['playerOrTeamName'] == name):
+            print(player['rank'])
+            print(str(player['leaguePoints']) + 'LP\n')
+    print(league[1]['queue'] + ':\n')
+    print(league[1]['tier'])
+    for player in league[1]['entries']:
+        if(player['playerOrTeamName'] == name):
+            print(player['rank'])
+            print(str(player['leaguePoints']) + 'LP\n')
+
 
 summonerName = "shinameega" #Have this or the inputs commented out for quick testing or variety testing between accounts.
 region = "euw1"
@@ -71,8 +86,6 @@ region = "euw1"
 summoner = summonerRequest(summonerName,region)
 accountId = getAccountId(summoner)
 id = getSummonerId(summoner)
-
 recent = getRecentGames(accountId,region)
 printMostRecentGame(recent,summonerName)
-
-printLeagueDetails(region,id)
+printLeagueDetails(region,id,summonerName)
