@@ -32,6 +32,12 @@ def getMatchFromId(id):
     jsonData = openJSON(myurl)
     return jsonData
 
+def getChampionName(id):
+    myurl = 'https://' + region + '.api.riotgames.com/lol/static-data/v3/champions/' + str(id) + '?api_key=' + API_KEY
+    champion = openJSON(myurl)
+    return champion['name']
+
+
 def printMostRecentGame(recent,id): #Need the id for getting only that players stats.
     mostRecentId = recent['matches'][0]['gameId']
     match = getMatchFromId(mostRecentId)
@@ -41,7 +47,8 @@ def printMostRecentGame(recent,id): #Need the id for getting only that players s
             participantId = player['participantId']
             for participant in match['participants']:
                 if(participantId == participant['participantId']):
-                    print("Champion ID: " + str(participant['championId']))
+                    champion = getChampionName(participant['championId'])
+                    print("Champion: " + champion)
                     print("Kills: " + str(participant['stats']['kills']))
                     print("Deaths: " + str(participant['stats']['deaths']))
                     print("Assists: " + str(participant['stats']['assists']))
