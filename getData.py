@@ -51,6 +51,7 @@ def printMostRecentGame(recent,summonerName): #Need the id for getting only that
                     print("Kills: " + str(participant['stats']['kills']))
                     print("Deaths: " + str(participant['stats']['deaths']))
                     print("Assists: " + str(participant['stats']['assists']))
+                    print("Wards: " + str(participant['stats']['wardsPlaced']))
 
 
 
