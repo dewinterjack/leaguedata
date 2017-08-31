@@ -36,8 +36,11 @@ def printMostRecentGame(recent):
     print(match['seasonId'])
 
 
-summonerName = input("What is the summoner name?\n\n")
-region = input("What is the region?\n\n")
+summonerName = "shinameega" #Have this or the inputs commented out for quick testing or variety testing between accounts.
+region = "euw1"
+
+#summonerName = input("What is the summoner name?\n\n")
+#region = input("What is the region?\n\n")
 
 summoner = summonerRequest(summonerName,region)
 id = getSummonerId(summoner)
