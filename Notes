@@ -1,0 +1,7 @@
+- Create constant variables for ids such as champions, icons, season etc (Connect champion name to its ID)
+- Look into a more permanent API key (only lasts for the day)
+- Access specific data from matches (create list):
+
+Kills, Deaths, Assists, Wards, Healing etc
+
+- Need to get the participant ID for the data on each player in a game.

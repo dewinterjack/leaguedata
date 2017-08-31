@@ -2,7 +2,6 @@ import urllib.request, json
 
 print('League Software')
 
-
 API_KEY = 'RGAPI-2d0ab476-0501-4bd1-8dae-6a2b0e9ed8ad'
 
 def summonerRequest(summName,region):
@@ -30,10 +29,20 @@ def getMatchFromId(id):
     jsonData = openJSON(myurl)
     return jsonData
 
-def printMostRecentGame(recent):
+def printMostRecentGame(recent,id): #Need the id for getting only that players stats.
     mostRecentId = recent['matches'][0]['gameId']
     match = getMatchFromId(mostRecentId)
-    print(match['seasonId'])
+    for player in match['participantIdentities']:
+        if(player['player']['accountId'] == id):
+
+            participantId = player['participantId']
+            for participant in match['participants']:
+                if(participantId == participant['participantId']):
+                    print("Champion ID: " + str(participant['championId']))
+                    print("Kills: " + str(participant['stats']['kills']))
+                    print("Deaths: " + str(participant['stats']['deaths']))
+                    print("Assists: " + str(participant['stats']['assists']))
+
 
 
 summonerName = "shinameega" #Have this or the inputs commented out for quick testing or variety testing between accounts.
@@ -45,4 +54,4 @@ region = "euw1"
 summoner = summonerRequest(summonerName,region)
 id = getSummonerId(summoner)
 recent = getRecentGames(id,region)
-printMostRecentGame(recent)
+printMostRecentGame(recent,id)
