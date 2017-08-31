@@ -38,12 +38,11 @@ def getChampionName(id):
     return champion['name']
 
 
-def printMostRecentGame(recent,id): #Need the id for getting only that players stats.
+def printMostRecentGame(recent,summonerName): #Need the id for getting only that players stats.
     mostRecentId = recent['matches'][0]['gameId']
     match = getMatchFromId(mostRecentId)
     for player in match['participantIdentities']:
-        if(player['player']['accountId'] == id):
-
+        if(player['player']['summonerName'] == summonerName):
             participantId = player['participantId']
             for participant in match['participants']:
                 if(participantId == participant['participantId']):
@@ -64,4 +63,4 @@ region = "euw1"
 summoner = summonerRequest(summonerName,region)
 id = getSummonerId(summoner)
 recent = getRecentGames(id,region)
-printMostRecentGame(recent,id)
+printMostRecentGame(recent,summonerName)
