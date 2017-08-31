@@ -2,7 +2,6 @@ import urllib.request, json
 
 season = {0:'PRESEASON3', 1:'SEASON3', 2:'PRESEASON2014', 3:'SEASON2014', 4: 'PRESEASON2015', 5: 'SEASON2015', 6: 'PRESEASON2016', 7: 'SEASON2016', 8: 'PRESEASON2017', 9: 'SEASON2017'}
 
-
 print('League Software\n')
 
 API_KEY = 'RGAPI-2d0ab476-0501-4bd1-8dae-6a2b0e9ed8ad'
@@ -42,7 +41,6 @@ def getChampionName(id):
     champion = openJSON(myurl)
     return champion['name']
 
-
 def printMostRecentGame(recent,summonerName): #Need the id for getting only that players stats.
     mostRecentId = recent['matches'][0]['gameId']
     match = getMatchFromId(mostRecentId)
@@ -75,7 +73,6 @@ def printLeagueDetails(region,id,name):
         if(player['playerOrTeamName'] == name):
             print(player['rank'])
             print(str(player['leaguePoints']) + 'LP\n')
-
 
 summonerName = "shinameega" #Have this or the inputs commented out for quick testing or variety testing between accounts.
 region = "euw1"
